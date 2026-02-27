@@ -1,1 +1,1 @@
-backups for a fresh install
+backups for a fresh arch install
