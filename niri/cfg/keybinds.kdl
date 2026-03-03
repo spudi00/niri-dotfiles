@@ -9,14 +9,15 @@ binds {
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
-    Mod+Space                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Return                          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
+    Mod+Space                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "fuzzel --no-icons"; }
     Mod+Shift+B                         hotkey-overlay-title="Open Browser: firefox" { spawn "zen-browser"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
     // Please choose your own file manager.
-    Mod+Shift+F                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+    //Mod+Shift+F                             hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+    Mod+Shift+F                               hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "-e" "yazi"; }
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -93,7 +94,7 @@ binds {
     // Mod+W                            { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    CTRL+Shift+S                        { screenshot; }
+    CTRL+Shift+1                        { screenshot; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
 
