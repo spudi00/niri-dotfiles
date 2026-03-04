@@ -16,8 +16,8 @@ binds {
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
     // Please choose your own file manager.
-    //Mod+Shift+F                             hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-    Mod+Shift+F                               hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "-e" "yazi"; }
+    Mod+Shift+F                             hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+    //Mod+Shift+F                               hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "-e" "yazi"; }
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -106,5 +106,5 @@ binds {
     // ─── Exit / Power ───
     Mod+Ctrl+Escape                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
-    Mod+O                               repeat=false { toggle-overview; }
+    Mod+Tab                               repeat=false { toggle-overview; }
 }
