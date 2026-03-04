@@ -46,20 +46,6 @@ sudo pacman -S --noconfirm \
   rocm-smi-lib flatpak
 ```
 
-| Package | Description |
-|---|---|
-| `kitty` | GPU-accelerated terminal emulator |
-| `vesktop` | Discord client |
-| `steam` | Gaming platform |
-| `mpv` | Media player |
-| `eog` | Image viewer |
-| `obs-studio` | Streaming / screen recording |
-| `neovim` | Text editor |
-| `ntfs-3g` | NTFS filesystem support |
-| `qbittorrent` | BitTorrent client |
-| `cava` | Audio visualizer |
-| `rocm-smi-lib` | AMD GPU monitoring |
-| `flatpak` | Flatpak app support |
 
 ### AUR (`yay`)
 
@@ -67,8 +53,3 @@ sudo pacman -S --noconfirm \
 yay -S --noconfirm spotify zen-browser-bin noctalia-shell
 ```
 
-| Package | Description |
-|---|---|
-| `spotify` | Music streaming |
-| `zen-browser-bin` | Firefox-based privacy browser |
-| `noctalia-shell` | Shell theme |
