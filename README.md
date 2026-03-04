@@ -40,10 +40,7 @@ UUID=4ACAE882CAE86B9F  /mnt/hdd  ntfs-3g  uid=1000,gid=1000,umask=022  0  0
 ### Official Repos (`pacman`)
 
 ```bash
-sudo pacman -S --noconfirm \
-  kitty vesktop steam mpv eog obs-studio \
-  neovim ntfs-3g qbittorrent cava \
-  rocm-smi-lib flatpak
+sudo pacman -S --noconfirm kitty vesktop steam mpv eog obs-studio neovim ntfs-3g qbittorrent cava rocm-smi-lib flatpak
 ```
 
 
