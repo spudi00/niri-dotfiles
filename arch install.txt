@@ -5,7 +5,7 @@ Arch Linux Installation Commands
 Essentials
 Mounting HDD
 sudo mkdir /mnt/hdd
-UUID=4ACAE882CAE86B9F /mnt/hdd  ntfs-3g  defaults  0  0
+UUID=4ACAE882CAE86B9F  /mnt/hdd  ntfs-3g  uid=1000,gid=1000,umask=022  0  0
 
 
 Packages
