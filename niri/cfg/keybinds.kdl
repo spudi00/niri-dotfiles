@@ -62,10 +62,10 @@ binds {
 
     // ─── Workspace Switching ───
 
-    Mod+WheelScrollDown                 { focus-column-right; }
-    Mod+WheelScrollUp                   { focus-column-left; }
-    Mod+Shift+WheelScrollDown           { move-column-right; }
-    Mod+Shift+WheelScrollUp             { move-column-left; }
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-right; }
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-left; }
 
     Mod+1                               { focus-workspace 1; }
     Mod+2                               { focus-workspace 2; }

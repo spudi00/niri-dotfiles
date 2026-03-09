@@ -18,8 +18,18 @@
 
     hotkey-overlay {
        skip-at-startup
-    }
 
+    }
+    gestures {
+        hot-corners {
+            off
+        }
+    }
+    
+    recent-windows {
+        off
+    }
+    
     workspace "1"
     workspace "2"
     workspace "3"
