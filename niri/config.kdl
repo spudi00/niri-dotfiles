@@ -1,15 +1,18 @@
-//DISPLAY
+config-notification {
+    disable-failed
+}
+
 output "PNP(AOC) 24V1W 0x0000005A" {
     mode "1920x1080@74.973" // Set resolution and refresh rate
     scale 1 // No scaling (use 2 for HiDPI)
 }
 
-spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-spawn-sh-at-startup "qs -c noctalia-shell"
-spawn-at-startup "xwayland-satellite"
+gestures {
+    hot-corners {
+        off
+    }
+}
 
-
-//INPUT
 input {
     keyboard {
         xkb {
@@ -28,176 +31,201 @@ input {
     // workspace-auto-back-and-forth // Enable workspace back & forth switching
 }
 
-
-//LAYOUTS
 layout {
-    gaps 15 // Gap between windows
-    center-focused-column "never" // Don’t auto-center focused column
+    gaps 15		
+    background-color "transparent"
     always-center-single-column
-        
-    background-color "transparent" // <- needed for noctalia-shell to set wallpaper
-
+    center-focused-column "never"
     preset-column-widths {
+        proportion 0.33333
         proportion 0.5
-        proportion 0.7
+        proportion 0.66667
     }
+    default-column-width { proportion 0.5; }
 
-    default-column-width { proportion 0.5; }  
-}
-
-
-//ANIMATIONS
-animations {
-}
-
-
-//KEYBINDS
-binds {
-    Mod+Shift+ESCAPE                    { show-hotkey-overlay; }
-    Mod+W                               { close-window; }
-    Mod+Tab                             repeat=false { toggle-overview; }
-    Mod+Ctrl+Return                     allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    Mod+Space                           hotkey-overlay-title="Open App Launcher" { spawn-sh "fuzzel --no-icons"; }
-    Mod+Shift+B                         hotkey-overlay-title="Open Browser: firefox" { spawn "zen-browser"; }
-    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+Shift+F                         hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
-    XF86AudioNext                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media next"; }
-    XF86AudioPrev                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media previous"; }
-    XF86AudioPlay                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
-    XF86AudioPause                      allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
-
-    Mod+H                               { focus-column-left; }
-    Mod+J                               { focus-window-down; }
-    Mod+K                               { focus-window-up; }
-    Mod+L                               { focus-column-right; }
-    Mod+LEFT                            { focus-column-left; }
-    Mod+DOWN                            { focus-window-down; }
-    Mod+UP                              { focus-window-up; }
-    Mod+RIGHT                           { focus-column-right; }
-
-    Mod+Shift+H                         { move-column-left; }
-    Mod+Shift+J                         { move-window-down; }
-    Mod+Shift+K                         { move-window-up; }
-    Mod+Shift+L                         { move-column-right; }
-    Mod+Shift+LEFT                      { move-column-left; }
-    Mod+Shift+DOWN                      { move-window-down; }
-    Mod+Shift+UP                        { move-window-up; }
-    Mod+Shift+RIGHT                     { move-column-right; }
-
-    Mod+Home                            { focus-column-first; }
-    Mod+End                             { focus-column-last; }
-    Mod+Shift+Home                      { move-column-to-first; }
-    Mod+Shift+End                       { move-column-to-last; }
-
-    Mod+WheelScrollDown                 cooldown-ms=150 { focus-column-right; }
-    Mod+WheelScrollUp                   cooldown-ms=150 { focus-column-left; }
-    Mod+Shift+WheelScrollDown           cooldown-ms=150 { move-column-right; }
-    Mod+Shift+WheelScrollUp             cooldown-ms=150 { move-column-left; }
-
-    Mod+1                               { focus-workspace 1; }
-    Mod+2                               { focus-workspace 2; }
-    Mod+3                               { focus-workspace 3; }
-    Mod+4                               { focus-workspace 4; }
-    Mod+5                               { focus-workspace 5; }
-
-    Mod+Shift+1                         { move-column-to-workspace focus=false 1; }
-    Mod+Shift+2                         { move-column-to-workspace focus=false 2; }
-    Mod+Shift+3                         { move-column-to-workspace focus=false 3; }
-    Mod+Shift+4                         { move-column-to-workspace focus=false 4; }
-    Mod+Shift+5                         { move-column-to-workspace focus=false 5; }
-
-    Mod+CTRL+F                          { fullscreen-window; }
-    Mod+C                               { center-column; }
-    Mod+CTRL+C                          { center-visible-columns; }
-    Mod+Minus                           { set-column-width "-10%"; }
-    Mod+Equal                           { set-column-width "+10%"; }
-    Mod+Shift+Minus                     { set-window-height "-10%"; }
-    Mod+Shift+Equal                     { set-window-height "+10%"; }
-
-    Mod+T                               { toggle-window-floating; }
-    Mod+F                               { maximize-column; }
-    Mod+R                               { switch-preset-column-width; }
-
-    CTRL+Shift+1                        { screenshot; }
-    CTRL+Shift+2                        { screenshot-screen; }
-    CTRL+Shift+3                        { screenshot-window; }
-
-    Mod+Ctrl+Escape                     { quit; }
-    Mod+Ctrl+P                          { power-off-monitors; }
-}
-
-
-//RULES
-window-rule {
-    geometry-corner-radius 10 // Set every window radius
-    clip-to-geometry true
+    focus-ring {
+        off
+        width 2
+        active-color "#cba6f7"    // outer ring — accent color
+        inactive-color "#313244"
+    }
+    
+    border {
+        on
+        width 2
+        active-color   "#707070"      // Neutral gray
+        inactive-color "#d0d0d0"      // Light gray
+        urgent-color   "#cc4444"      // Softer red
+    }
+    shadow {
+        on
+        softness 60
+        spread 15
+        offset x=0 y=5
+        color "#0007"
+    }
+    struts {
+    }
 }
 layer-rule {
-  	match namespace="^noctalia-wallpaper*"
-  	place-within-backdrop true
+    match namespace="^quickshell$"
+    place-within-backdrop true
 }
-window-rule {
-    match title="Discord"
-    open-on-workspace "3"
-    open-focused false
-}
-window-rule {
-    match title="Zen Browser"
-    open-on-workspace "2"
-    open-focused true
-}
-window-rule {
-    match title="Spotify"
-    open-on-workspace "4"
-    open-focused false
-}
-
-
-//MISC
-prefer-no-csd
-
-screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
-    
-environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORM "wayland"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    XDG_SESSION_TYPE "wayland"
-    XDG_CURRENT_DESKTOP "niri"
-    QT_QPA_PLATFORMTHEME "kvantum"
-    QT_STYLE_OVERRIDE "kvantum"
-}
-
-debug {
-    // Allows notification actions and window activation from Noctalia.
-    honor-xdg-activation-with-invalid-serial
-}
-
-hotkey-overlay {
-    skip-at-startup
-
-}
-gestures {
-    hot-corners {
+overview {
+    workspace-shadow {
         off
     }
 }
-    
+// Add lines like this to spawn processes at startup.
+spawn-at-startup "systemctl" "--user" "import-environment" "QT_QPA_PLATFORMTHEME" "QT_STYLE_OVERRIDE" "QT_QPA_PLATFORM"
+spawn-at-startup "ydotoold"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "xsettingsd"
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+// This line starts waybar, a commonly used bar for Wayland compositors.
+environment {
+  XDG_CURRENT_DESKTOP "niri"
+  QT_QPA_PLATFORM "wayland"
+  QT_QPA_PLATFORMTHEME "qt6ct"
+  GTK_THEME "adw-gtk3-dark"
+}
+hotkey-overlay {
+    skip-at-startup
+}
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+animations {
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+}
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+window-rule {
+    match app-id=r#"^gnome-control-center$"#
+    match app-id=r#"^pavucontrol$"#
+    match app-id=r#"^nm-connection-editor$"#
+    default-column-width { proportion 0.5; }
+    open-floating false
+}
+window-rule {
+    match app-id=r#"^gnome-calculator$"#
+    match app-id=r#"^galculator$"#
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="zoom"
+    open-floating true
+}
+// Open dms windows as floating by default
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id="^Spotify$"
+    match app-id="^vesktop$"
+    match app-id="^zen$"
+    match app-id="^discord$"
+    match app-id="^org.quickshell$"
+    match app-id="^org.gnome.Nautilus$"
+    match app-id="^code-oss$"
+    match app-id="^Tk$"
+    match app-id="^faugus-launcher$"
+    match app-id="^helium$"
+    match app-id="^faugus-launcher$"
+    opacity 0.90
+    background-effect{
+        blur true
+    }
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Override to disable super+tab
 recent-windows {
-    off
+    binds {
+        Alt+Tab         { next-window scope="workspace"; }
+        Alt+Shift+Tab   { previous-window scope="workspace"; }
+        Alt+grave       { next-window filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+    }
 }
 
 workspace "1"
 workspace "2"
 workspace "3"
 workspace "4"
-    
 
-
+// Include dms files
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"
+include "dms/outputs.kdl"
+include "dms/cursor.kdl"
+include "dms/windowrules.kdl"

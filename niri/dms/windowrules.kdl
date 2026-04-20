@@ -1,0 +1,53 @@
+// DMS Window Rules - Managed by DankMaterialShell
+// Do not edit manually - changes may be overwritten
+
+// @id=wr_1775391281921527585 @name=spotify
+window-rule {
+    match app-id="^Spotify$"
+    open-on-workspace "3"
+    default-column-width { proportion 0.3; }
+}
+
+// @id=wr_1775391531302375461 @name=vesktop
+window-rule {
+    match app-id="^vesktop$"
+    open-on-workspace "3"
+    default-column-width { proportion 0.577; }
+}
+
+// @id=wr_1775830019937636601 @name=discord
+window-rule {
+    match app-id="^discord$"
+    open-on-workspace "3"
+    default-column-width { proportion 0.577; }
+}
+
+// @id=wr_1775395184360306738 @name=zen
+window-rule {
+    match app-id="^zen$"
+    open-on-workspace "2"
+    default-column-width { proportion 0.7; }
+}
+
+// @id=wr_1776436385886191984 @name=helium
+window-rule {
+    match app-id="^helium$"
+    open-on-workspace "2"
+    default-column-width { proportion 0.7; }
+}
+
+// @id=wr_1775401296787321368 @name=Tk
+window-rule {
+    match app-id="^Tk$"
+    open-floating true
+}
+
+
+// @id=wr_1776341831859127762 @name=kitty
+window-rule {
+    match app-id="^kitty$"
+    //default-column-width { fixed 840; }
+    // default-window-height { fixed 810; }
+}
+
+
